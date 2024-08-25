@@ -14,11 +14,14 @@ from PIL import Image
 # Loading Image using PIL
 im = Image.open('dashboard.png')
 # Adding Image to web app
-st.set_page_config(page_title="Surge Price Prediction App", page_icon = im, layout="wide")
+st.set_page_config(page_title="Report Recommendation App", page_icon = im, layout="wide")
 
-st.title('Report Recommendation App')
+#st.title('Report Recommendation App')
 
-st.markdown(''':blue[***This application helps the user identify the right report they are looking for.***]''')
+st.markdown("<h1 style='text-align: center; color: black;'>Report Recommendation App</h1>", unsafe_allow_html=True)
+
+st.markdown('''<p style='text-align: center'>;:blue[***This application helps the user identify the right report they are looking for.***</p>''',
+            unsafe_allow_html=True)
 
 @st.cache(allow_output_mutation=True)
 def get_model():
@@ -63,11 +66,12 @@ if user_input and button:
     #final_results = pd.DataFrame()
     #final_results['cross_encoder'] = [item['Dashboard Name'] for item in ranked_results[0:3]]
 
-    df_result = df[df['Dashboard Name'].isin([item['Dashboard Name'] for item in ranked_results[0:3]])]
+    df_result = df[df['Dashboard Name'].isin([item['Dashboard Name'] for item in ranked_results[0:2]])]
     df_result.rename(columns = {'KPI Description': 'About the Dashboard', 'KPI Values':'Key Insights'}, inplace = True)
     df_result.drop(columns='KPIs', inplace = True)
     df_result.reset_index(inplace=True)
     df_result.drop(columns='index', inplace = True)
 
-    st.header("Top 3 relevant reports")
+    st.markdown("<h2 style='text-align: center; color: black;'>Top Relevant Reports</h2>", unsafe_allow_html=True)
+    #st.header("Top Relevant Reports")
     st.table(df_result)
