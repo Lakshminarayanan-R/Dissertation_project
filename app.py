@@ -51,7 +51,8 @@ button = st.button("Fetch Report List")
 
 
 if user_input and button:
-    st.markdown('The model is fetching relevant reports for the given context -', user_input)
+    reply_message = 'The model is fetching relevant reports for the given context -', user_input
+    st.write(reply_message)
     st.write("It might take a few minutes to load")
     model_inputs = [[user_input,item['KPI Descriptions']] for item in results]
     scores = cross_score(model_inputs)
