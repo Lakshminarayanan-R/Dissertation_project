@@ -1,0 +1,10 @@
+transformers
+datasets
+nltk
+gensim
+sentence-transformers
+bert-score
+huggingface_hub
+tensorflow
+streamlit
+tf-keras
