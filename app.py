@@ -60,12 +60,12 @@ if user_input and button:
     ranked_results = [{'Dashboard Name': inp['Dashboard Name'], 'Score': score} for inp, score in zip(results, scores)]
     ranked_results = sorted(ranked_results, key=lambda x: x['Score'], reverse=True)
 
-    final_results = pd.DataFrame()
-    final_results['cross_encoder'] = [item['Dashboard Name'] for item in ranked_results[0:3]]
+    #final_results = pd.DataFrame()
+    #final_results['cross_encoder'] = [item['Dashboard Name'] for item in ranked_results[0:3]]
 
     df_result = df[df['Dashboard Name'].isin([item['Dashboard Name'] for item in ranked_results[0:3]])]
     df_result.rename(columns = {'KPI Description': 'About the Dashboard', 'KPI Values':'Key Insights'}, inplace = True)
     df_result.drop(columns='KPIs', inplace = True)
-    df_result
 
-    st.table(final_results)
+
+    st.table(df_result)
