@@ -51,7 +51,7 @@ button = st.button("Fetch Report List")
 
 
 if user_input and button:
-    reply_message = 'The model is fetching relevant reports for the given context -', user_input
+    reply_message = 'The model is fetching relevant reports for the given context -' + user_input
     st.write(reply_message)
     st.write("It might take a few minutes to load")
     model_inputs = [[user_input,item['KPI Descriptions']] for item in results]
@@ -63,9 +63,11 @@ if user_input and button:
     #final_results = pd.DataFrame()
     #final_results['cross_encoder'] = [item['Dashboard Name'] for item in ranked_results[0:3]]
 
-    df_result = df[df['Dashboard Name'].isin([item['Dashboard Name'] for item in ranked_results[0:3]])]
+    df_result = df[df['Dashboard Name'].isin([item['Dashboard Name'] for item in ranked_results[0:2]])]
     df_result.rename(columns = {'KPI Description': 'About the Dashboard', 'KPI Values':'Key Insights'}, inplace = True)
     df_result.drop(columns='KPIs', inplace = True)
+    df_result.reset_index(inplace=True)
+    df_result.drop(columns='index', inplace = True)
 
-
+    st.header("Top 3 relevant reports")
     st.table(df_result)
