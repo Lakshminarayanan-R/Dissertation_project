@@ -20,7 +20,7 @@ st.set_page_config(page_title="Report Recommendation App", page_icon = im, layou
 
 st.markdown("<h1 style='text-align: center; color: black;'>Report Recommendation App</h1>", unsafe_allow_html=True)
 
-st.markdown('''<p style='text-align: center'>;:blue[***This application helps the user identify the right report they are looking for.***</p>''',
+st.markdown('''<p style='text-align: center; color: blue;'><b>This application helps the user identify the right report they are looking for.</b></p>''',
             unsafe_allow_html=True)
 
 @st.cache(allow_output_mutation=True)
