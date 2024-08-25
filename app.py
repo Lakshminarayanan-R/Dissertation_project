@@ -14,7 +14,7 @@ from PIL import Image
 # Loading Image using PIL
 im = Image.open('dashboard.png')
 # Adding Image to web app
-st.set_page_config(page_title="Surge Price Prediction App", page_icon = im)
+st.set_page_config(page_title="Surge Price Prediction App", page_icon = im, layout="wide")
 
 st.title('Report Recommendation App')
 
@@ -63,7 +63,7 @@ if user_input and button:
     #final_results = pd.DataFrame()
     #final_results['cross_encoder'] = [item['Dashboard Name'] for item in ranked_results[0:3]]
 
-    df_result = df[df['Dashboard Name'].isin([item['Dashboard Name'] for item in ranked_results[0:2]])]
+    df_result = df[df['Dashboard Name'].isin([item['Dashboard Name'] for item in ranked_results[0:3]])]
     df_result.rename(columns = {'KPI Description': 'About the Dashboard', 'KPI Values':'Key Insights'}, inplace = True)
     df_result.drop(columns='KPIs', inplace = True)
     df_result.reset_index(inplace=True)
