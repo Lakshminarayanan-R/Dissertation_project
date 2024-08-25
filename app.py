@@ -36,6 +36,12 @@ def cross_score(model_inputs):
     scores = cross_model.predict(model_inputs)
     return scores
 
+st.set_page_config(page_title="Surge Price Prediction App")
+from PIL import Image
+# Loading Image using PIL
+im = Image.open('/content/App_Icon.png')
+# Adding Image to web app
+st.set_page_config(page_title="Surge Price Prediction App", page_icon = im)
 user_input = st.text_area("Enter Text")
 button = st.button("Analyze")
 
