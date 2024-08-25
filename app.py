@@ -18,7 +18,7 @@ st.set_page_config(page_title="Surge Price Prediction App", page_icon = im)
 
 st.title('Report Recommendation App')
 
-st.markdown('''blue[This application helps the user identify the right report they are looking for.]''')
+st.markdown(''':blue[***This application helps the user identify the right report they are looking for.***]''')
 
 @st.cache(allow_output_mutation=True)
 def get_model():
