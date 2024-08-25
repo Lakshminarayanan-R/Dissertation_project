@@ -10,6 +10,11 @@ import gensim
 from sentence_transformers import CrossEncoder
 #cross_model = CrossEncoder('cross-encoder/ms-marco-TinyBERT-L-6', max_length=512)
 
+from PIL import Image
+# Loading Image using PIL
+im = Image.open('dashboard.png')
+# Adding Image to web app
+st.set_page_config(page_title="Surge Price Prediction App", page_icon = im)
 
 @st.cache(allow_output_mutation=True)
 def get_model():
@@ -36,11 +41,7 @@ def cross_score(model_inputs):
     scores = cross_model.predict(model_inputs)
     return scores
 
-from PIL import Image
-# Loading Image using PIL
-im = Image.open('dashboard.png')
-# Adding Image to web app
-st.set_page_config(page_title="Surge Price Prediction App", page_icon = im)
+
 user_input = st.text_area("Enter Text")
 button = st.button("Analyze")
 
