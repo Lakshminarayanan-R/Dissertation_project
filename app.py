@@ -18,7 +18,7 @@ st.set_page_config(page_title="Surge Price Prediction App", page_icon = im)
 
 st.title('Report Recommendation App')
 
-st.text('A compant has lots of dashboards and reports and it is important to get insights from the right report. This application helps the user identify the right report they are looking for.')
+st.markdown('''blue[This application helps the user identify the right report they are looking for.]''')
 
 @st.cache(allow_output_mutation=True)
 def get_model():
@@ -51,7 +51,7 @@ button = st.button("Fetch Report List")
 
 
 if user_input and button:
-    st.write('The model is fetching relevant reports for the given context -', user_input)
+    st.markdown('The model is fetching relevant reports for the given context -', user_input)
     st.write("It might take a few minutes to load")
     model_inputs = [[user_input,item['KPI Descriptions']] for item in results]
     scores = cross_score(model_inputs)
