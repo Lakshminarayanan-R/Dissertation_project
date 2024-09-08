@@ -90,6 +90,7 @@ if user_input and button:
     #Sort the scores in decreasing order
     ranked_results_gen = [{'prompt': inp['prompt'], 'Score': score} for inp, score in zip(org_results_gen, scores_gen)]
     ranked_results_gen = sorted(ranked_results_gen, key=lambda x: x['Score'], reverse=True)
+    ranked_results_gen = pd.DataFrame(ranked_results_gen)
 
     #final_results = pd.DataFrame()
     #final_results['cross_encoder'] = [item['Dashboard Name'] for item in ranked_results[0:3]]
