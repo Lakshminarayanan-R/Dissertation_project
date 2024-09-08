@@ -102,19 +102,28 @@ if user_input and button:
     df_result.drop(columns='index', inplace = True)
 
     if final_result.head(1).Score[0] > 0.001:
-        prompt_res = final_result.head(1)['Dashboard Name'][0]
-        prompt_res = df.loc[df['Dashboard Name'] == prompt_res]['KPI Descriptions']
+        dash_name = final_result.head(1)['Dashboard Name'][0]
+        kpis = df.loc[df['Dashboard Name'] == dash_name]['KPI Values']
+        prompt_res = df.loc[df['Dashboard Name'] == dash_name]['KPI Descriptions']
         prompt_res = prompt_res.tolist()[0]
         summary = summarizer(prompt_res, max_length=100, min_length=30, do_sample=False)
         prompt_res = summary[0]['summary_text']
+        st.markdown("<h2 style='text-align: left; color: black;'>Results</h2>", unsafe_allow_html=True)
+        st.markdown("<h4 style='text-align: left; color: black;'><b>Relevant Report<b></h4>", unsafe_allow_html=True)
+        st.write(f"The Name of the Relevant Report is **{dash_name}**")
+        st.write(f"**Description** {prompt_res}")
+        st.write(f"**Important KPI results of the dashboard** {prompt_res}")
+
     elif ranked_results_gen.head(1).Score[0] > 0.1:
         prompt_res = ranked_results_gen.head(1)['prompt'][0]
         prompt_res = general_convs_df.loc[general_convs_df['prompt'] == prompt_res]['response']
         prompt_res = prompt_res.tolist()[0]
+        st.write(prompt_res)
     else:
         prompt_res = "Cannot find any relevance in the list, kindly enter a different Prompt"
+        st.markdown("<h2 style='text-align: left; color: red;'>{prompt_res}</h2>", unsafe_allow_html=True)
 
 
-    st.markdown("<h2 style='text-align: center; color: black;'>Results</h2>", unsafe_allow_html=True)
+    st.markdown("<h2 style='text-align: left; color: black;'>Results</h2>", unsafe_allow_html=True)
     #st.header("Top Relevant Reports")
     st.write(prompt_res)
