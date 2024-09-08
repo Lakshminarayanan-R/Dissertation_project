@@ -108,7 +108,8 @@ if user_input and button:
         summary = summarizer(prompt_res, max_length=100, min_length=30, do_sample=False)
         prompt_res = summary[0]['summary_text']
     elif ranked_results_gen.head(1).Score[0] > 0.1:
-        prompt_res = ranked_results_gen.head(1)['prompt']
+        prompt_res = ranked_results_gen.head(1)['response']
+        prompt_res = prompt_res.tolist()[0]
     else:
         prompt_res = "Cannot find any relevance in the list, kindly enter a different Prompt"
 
