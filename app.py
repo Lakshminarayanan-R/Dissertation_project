@@ -111,8 +111,8 @@ if user_input and button:
         st.markdown("<h2 style='text-align: left; color: black;'>Results</h2>", unsafe_allow_html=True)
         st.markdown("<h4 style='text-align: left; color: black;'><b>Relevant Report<b></h4>", unsafe_allow_html=True)
         st.write(f"The Name of the Relevant Report is **{dash_name}**")
+        st.write(f"**Important KPI results of the dashboard** {kpis}")
         st.write(f"**Description** {prompt_res}")
-        st.write(f"**Important KPI results of the dashboard** {prompt_res}")
 
     elif ranked_results_gen.head(1).Score[0] > 0.1:
         prompt_res = ranked_results_gen.head(1)['prompt'][0]
@@ -122,8 +122,3 @@ if user_input and button:
     else:
         prompt_res = "Cannot find any relevance in the list, kindly enter a different Prompt"
         st.markdown("<h2 style='text-align: left; color: red;'>{prompt_res}</h2>", unsafe_allow_html=True)
-
-
-    st.markdown("<h2 style='text-align: left; color: black;'>Results</h2>", unsafe_allow_html=True)
-    #st.header("Top Relevant Reports")
-    st.write(prompt_res)
