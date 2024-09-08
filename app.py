@@ -104,6 +104,7 @@ if user_input and button:
     if final_result.head(1).Score[0] > 0.001:
         dash_name = final_result.head(1)['Dashboard Name'][0]
         kpis = df.loc[df['Dashboard Name'] == dash_name]['KPI Values']
+        kpis = kpis.to_list()[0]
         prompt_res = df.loc[df['Dashboard Name'] == dash_name]['KPI Descriptions']
         prompt_res = prompt_res.tolist()[0]
         summary = summarizer(prompt_res, max_length=100, min_length=30, do_sample=False)
@@ -121,4 +122,4 @@ if user_input and button:
         st.write(prompt_res)
     else:
         prompt_res = "Cannot find any relevance in the list, kindly enter a different Prompt"
-        st.markdown(prompt_res, unsafe_allow_html=True)
+        st.markdown(f"<h2 style='color: red;'>{prompt_res}</h2>", unsafe_allow_html=True)
