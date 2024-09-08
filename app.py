@@ -121,4 +121,4 @@ if user_input and button:
         st.write(prompt_res)
     else:
         prompt_res = "Cannot find any relevance in the list, kindly enter a different Prompt"
-        st.markdown("<h2 style='text-align: left; color: red;'>{prompt_res}</h2>", unsafe_allow_html=True)
+        st.markdown(prompt_res, unsafe_allow_html=True)
